@@ -7,6 +7,8 @@ using UnityEngine;
 public class Tree : MonoBehaviour
 {
     Hatchet hatchet;
+    PlayerController playercontroller;
+    AudioSource sound;
     int minDMG;
     int maxDMG;
     public int health;
@@ -17,6 +19,8 @@ public class Tree : MonoBehaviour
     {
         health = UnityEngine.Random.Range(80, 151);
         hatchet = GameObject.Find("Hatchet").GetComponent<Hatchet>();
+        playercontroller = GameObject.Find("Body").GetComponent<PlayerController>();
+        sound = gameObject.GetComponent<AudioSource>();
 
         minDMG = hatchet.minDMG;
         maxDMG = hatchet.maxDMG;
@@ -32,13 +36,17 @@ public class Tree : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("swing")
+        if (other.tag == "HATCHET" && 
+            playercontroller.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("swing")
             && chopping == false)
         {
             health -= UnityEngine.Random.Range(minDMG, maxDMG);
             chopping = true;
+
+            sound.Play();
         }
     }
 

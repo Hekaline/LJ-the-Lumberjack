@@ -5,11 +5,11 @@ public class PlayerController : MonoBehaviour
 {
     Animator animator;
     Rigidbody charRigidbody;
-    public float moveSpeed = 50f;
+    public float moveSpeed = 5f;
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         charRigidbody = GetComponent<Rigidbody>();
     }
 
@@ -21,23 +21,25 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("onClick");
         }
 
+        
+
+        //if (Input.GetAxis("Horizontal") != 0|| Input.GetAxis("Vertical") != 0)
+        //{
+        //    animator.SetBool("isMoving", true);
+        //}
+        //else
+        //{
+        //    animator.SetBool("isMoving", false);
+        //}
+
         float hAxis = Input.GetAxis("Horizontal");
         float vAxis = Input.GetAxis("Vertical");
 
-        if (Input.GetAxis("Horizontal") != 0|| Input.GetAxis("Vertical") != 0)
-        {
-            animator.SetBool("isMoving", true);
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
-        }
+        Vector3 dd
+            = new Vector3(hAxis, 0, vAxis);
 
-        Vector3 inputDir
-            = new Vector3(hAxis, 0, vAxis).normalized;
-
-        charRigidbody.velocity = inputDir * moveSpeed * Time.deltaTime;
+        charRigidbody.velocity= dd * moveSpeed;
         
-        transform.LookAt(transform.position + inputDir);
+        transform.LookAt(transform.position + dd);
     }
 }
