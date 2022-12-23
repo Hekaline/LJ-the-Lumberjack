@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     Rigidbody charRigidbody;
     public float moveSpeed = 5f;
+    public int wood = 0;
     // Start is called before the first frame update
     void Start()
     {
