@@ -40,14 +40,12 @@ public class Tree : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!handController.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("swing"))
-            chopping = false;
+        
     }
     
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        print("A");
         if (other.tag == "HATCHET" &&
             handController.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("swing")
             && chopping == false)
@@ -55,9 +53,8 @@ public class Tree : MonoBehaviour
             health -= UnityEngine.Random.Range(minDMG, maxDMG);
             tmpHealth.text = "Tree Health: " + health + '/' + maxHealth;
 
-            chopping = true;
-
-            sound.Play();
+            StopCoroutine("WaitUntilStopChopping");
+            StartCoroutine("WaitUntilStopChopping");
         }
 
         if (health <= 0)
@@ -70,5 +67,14 @@ public class Tree : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    
+    IEnumerator WaitUntilStopChopping()
+    {
+        chopping = true;
+        sound.Play();
+        yield return new WaitForSeconds
+            (handController.GetComponent<Animator>().
+            GetCurrentAnimatorClipInfo(0).Length); // 애니메이션의 길이만큼 다시 나무를 베지 못하도록 기다리게 한다.
+        chopping = false;
+    }
 }
