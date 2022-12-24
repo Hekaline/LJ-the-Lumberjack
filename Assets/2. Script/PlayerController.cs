@@ -1,37 +1,37 @@
+using System.Collections;
 using UnityEngine;
 
 
 public class PlayerController : MonoBehaviour
 {
-    Animator animator;
+    Animator bodyAnimator;
+    HandController handController;
+    PlayerController playerController;
     Rigidbody charRigidbody;
+    
     public float moveSpeed = 5f;
     public int wood = 0;
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        bodyAnimator = GameObject.Find("Body").GetComponent<Animator>();
+        handController = GameObject.Find("Hand").GetComponent<HandController>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         charRigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 
+            || handController.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("swing"))
         {
-            animator.SetTrigger("onClick");
+            bodyAnimator.SetBool("onMoving", true);
+            StopCoroutine("Wait");
+            StartCoroutine("Wait");
+            
         }
 
-        
-
-        //if (Input.GetAxis("Horizontal") != 0|| Input.GetAxis("Vertical") != 0)
-        //{
-        //    animator.SetBool("isMoving", true);
-        //}
-        //else
-        //{
-        //    animator.SetBool("isMoving", false);
-        //}
 
         float hAxis = Input.GetAxis("Horizontal");
         float vAxis = Input.GetAxis("Vertical");
@@ -42,5 +42,12 @@ public class PlayerController : MonoBehaviour
         charRigidbody.velocity= dd * moveSpeed;
         
         transform.LookAt(transform.position + dd);
+    }
+
+    IEnumerator Wait()
+    {
+        print("waiting...");
+        yield return new WaitForSeconds(1f);
+        bodyAnimator.SetBool("onMoving", false);
     }
 }

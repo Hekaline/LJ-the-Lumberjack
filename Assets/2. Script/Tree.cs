@@ -9,7 +9,9 @@ using UnityEngine.UI;
 public class Tree : MonoBehaviour
 {
     Hatchet hatchet;
+    HandController handController;
     PlayerController playerController;
+
     AudioSource sound;
     public TextMeshProUGUI tmpHealth, tmpWood;
 
@@ -26,7 +28,8 @@ public class Tree : MonoBehaviour
         health = maxHealth;
 
         hatchet = GameObject.Find("Hatchet").GetComponent<Hatchet>();
-        playerController = GameObject.Find("Body").GetComponent<PlayerController>();
+        handController = GameObject.Find("Hand").GetComponent<HandController>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         sound = gameObject.GetComponent<AudioSource>();
 
         minDMG = hatchet.minDMG;
@@ -37,15 +40,16 @@ public class Tree : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!playerController.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("swing"))
+        if (!handController.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("swing"))
             chopping = false;
     }
     
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "HATCHET" && 
-            playerController.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("swing")
+        print("A");
+        if (other.tag == "HATCHET" &&
+            handController.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("swing")
             && chopping == false)
         {
             health -= UnityEngine.Random.Range(minDMG, maxDMG);
@@ -59,10 +63,9 @@ public class Tree : MonoBehaviour
         if (health <= 0)
         {
             playerController.wood += UnityEngine.Random.Range(2, 5);
-            print(playerController.wood);
 
             tmpHealth.text = "";
-            tmpWood.text = "Woodd: " + playerController.wood;
+            tmpWood.text = "Wood: " + playerController.wood;
 
             Destroy(gameObject);
         }
