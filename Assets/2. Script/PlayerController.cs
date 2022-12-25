@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator Wait()
     {
         print("waiting...");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         bodyAnimator.SetBool("onMoving", false);
     }
 }

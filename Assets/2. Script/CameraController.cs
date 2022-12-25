@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    Transform playerTransform; //Player의 transform 정보를 담을 변수 선언 
+    Transform playerTransform; 
     Vector3 Offset;
+    float xAngle;
 
     void Awake()
     {
@@ -13,8 +14,33 @@ public class CameraController : MonoBehaviour
         Offset = transform.position - playerTransform.position;
     }
 
-    void LateUpdate() //카메라 움직임은 주로 LateUpdate에 적습니다.
+    private void Start()
     {
-        transform.position = playerTransform.position + Offset; 
+        xAngle = transform.eulerAngles.x;
+    }
+
+    private void Update()
+    {
+
+        if (Input.GetKey(KeyCode.Z))
+        {
+            transform.eulerAngles = new Vector3(90, 0, 0);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(xAngle, 0, 0);
+        }
+    }
+
+    void LateUpdate() 
+    {
+        if (Input.GetKey(KeyCode.Z))
+        {
+            transform.position = playerTransform.position + Offset + new Vector3(0, 20, 10);
+        }
+        else
+        {
+            transform.position = playerTransform.position + Offset;
+        }
     }
 }
