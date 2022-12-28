@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public float maxStamina = 100f;
     public float nowStamina = 100f;
     public int wood = 0;
+    public int money = 0;
+    public int backpackRoom = 20; // 가방 공간
     
     Vector3 playerRotation;
     // Start is called before the first frame update

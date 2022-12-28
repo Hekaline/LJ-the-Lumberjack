@@ -40,13 +40,20 @@ public class Tree : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (playerController.wood >= playerController.backpackRoom)
+        {
+            tmpHealth.text = "°¡¹æÀÌ ²Ë Ã¡½À´Ï´Ù!\n³ª¹«¸¦ ÆÇ¸ÅÇÏ¿© µ·À» ¹ú¾î¿ä.";
+        }
     }
     
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "HATCHET" &&
+        if (playerController.wood >= playerController.backpackRoom)
+        {
+            tmpHealth.text = "Backpack is full!";
+        }
+        else if (other.tag == "HATCHET" &&
             handController.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("swing")
             && chopping == false)
         {
@@ -60,6 +67,8 @@ public class Tree : MonoBehaviour
         if (health <= 0)
         {
             playerController.wood += UnityEngine.Random.Range(2, 5);
+            if (playerController.wood >= playerController.backpackRoom)
+                playerController.wood = playerController.backpackRoom;
 
             tmpHealth.text = "";
             tmpWood.text = "Wood: " + playerController.wood;
