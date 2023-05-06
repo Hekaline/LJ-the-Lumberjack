@@ -16,7 +16,7 @@ public class Hatchet : MonoBehaviour
     Tree tree;
     [SerializeField]
     AudioSource sound;
-    bool isChopping = false;
+    public bool isChopping = false;
 
     private void OnTriggerStay(Collider other)
     {
@@ -34,7 +34,6 @@ public class Hatchet : MonoBehaviour
            
             tree.nowHealth -= UnityEngine.Random.Range(minDMG, maxDMG);
             uiManager.UpdateTreeHealth(tree.nowHealth, tree.maxHealth);
-            //tmpHealth.text = "Tree Health: " + tree.health + '/' + tree.maxHealth;
             
             if (tree.nowHealth <= 0)
             {
@@ -54,7 +53,7 @@ public class Hatchet : MonoBehaviour
     {
         yield return new WaitForSeconds
             (handController.GetComponent<Animator>().
-            GetCurrentAnimatorClipInfo(0).Length); 
+            GetCurrentAnimatorClipInfo(0).Length - 0.1f); 
         isChopping = false;
     }
 }
