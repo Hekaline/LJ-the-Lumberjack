@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
 {
     PlayerController playerController;
     public TextMeshProUGUI tmpTreeHP;
-    public TextMeshProUGUI tmpWood;
+    public TextMeshProUGUI tmpWood, tmpMoney;
 
     private void Start() {
         playerController = GameObject.Find("Player")
@@ -40,5 +40,10 @@ public class UIManager : MonoBehaviour
     public void UpdateWood()
     {
         tmpWood.text = "Wood: " + playerController.wood + "/" + playerController.maxWood;
+    }
+
+    public void UpdateMoney()
+    {
+        tmpMoney.text = "Money: " + playerController.money;
     }
 }

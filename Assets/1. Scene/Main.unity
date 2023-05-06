@@ -1086,7 +1086,7 @@ GameObject:
   - component: {fileID: 366938537}
   - component: {fileID: 366938536}
   m_Layer: 5
-  m_Name: Wood (1)
+  m_Name: Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1464,6 +1464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tmpTreeHP: {fileID: 1006317426}
   tmpWood: {fileID: 2139639440}
+  tmpMoney: {fileID: 366938536}
 --- !u!1001 &463318239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3306,6 +3307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tmpTreeHP: {fileID: 0}
   tmpWood: {fileID: 0}
+  tmpMoney: {fileID: 0}
 --- !u!1 &1476120144
 GameObject:
   m_ObjectHideFlags: 0
@@ -3874,13 +3876,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1530015286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d1110820d9dc7748b7ebdd6fb433e4d, type: 3}
+  m_Script: {fileID: 11500000, guid: e221bddd16e133449ab83e55c75d8557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameObjects:
-  - {fileID: 766957873}
-  scripts:
-  - {fileID: 0}
+  playerController: {fileID: 194983395}
+  uiManager: {fileID: 453294864}
 --- !u!1 &1630590806
 GameObject:
   m_ObjectHideFlags: 0
@@ -5297,5 +5297,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6867283886081342655, guid: 9450e9a98aee1b249b2c806ed75c31f5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9450e9a98aee1b249b2c806ed75c31f5, type: 3}

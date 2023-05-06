@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     Animator bodyAnimator;
     HandController handController;
     Rigidbody charRigidbody;
+    public KeyCode interactionKey = KeyCode.E;
     public Image staminaGauge;
     
     public float nowSpeed = 5f;
