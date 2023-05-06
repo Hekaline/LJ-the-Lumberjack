@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public float nowStamina = 100f;
     public int wood = 0;
     public int money = 0;
-    public int backpackRoom = 20; // °¡¹æ °ø°£
+    public int maxWood = 20; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     
     Vector3 playerRotation;
     // Start is called before the first frame update
@@ -43,20 +43,20 @@ public class PlayerController : MonoBehaviour
         float vAxis = Input.GetAxis("Vertical");
 
         Vector3 moveDir
-            = new Vector3(hAxis, 0, vAxis).normalized; // normalized: ´ëÃæ ´ë°¢¼± ¼Óµµ¸¦ ÀÏÁ÷¼± ¼Óµµ¿Í °°°Ô ÇØÁÜ
+            = new Vector3(hAxis, 0, vAxis).normalized; // normalized: ï¿½ï¿½ï¿½ï¿½ ï¿½ë°¢ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        charRigidbody.velocity = moveDir * nowSpeed; // Ä³¸¯ÅÍ ¼Óµµ
+        charRigidbody.velocity = moveDir * nowSpeed; // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
 
-        transform.LookAt(transform.position + moveDir); //Ä³¸¯ÅÍ°¡ °¡´Â ¹æÇâ ¹Ù¶óº¸±â
+        transform.LookAt(transform.position + moveDir); //Ä³ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶óº¸±ï¿½
 
         playerRotation = transform.eulerAngles;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) // ´Þ¸®±â Å°¸¦ ´­·¶°í
-            && nowStamina > 0                   // ½ºÅÂ¹Ì³ª°¡ ÀÖ°í
-            && (hAxis != 0 || vAxis != 0))      // ÀÌµ¿ÇÏ°í ÀÖÀ¸¸é
+        if (Input.GetKeyDown(KeyCode.LeftShift) // ï¿½Þ¸ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            && nowStamina > 0                   // ï¿½ï¿½ï¿½Â¹Ì³ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½
+            && (hAxis != 0 || vAxis != 0))      // ï¿½Ìµï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
             isRunning = true;
-            nowSpeed *= runMultiply; // ´Þ¸°´Ù(¼Óµµ º¯°æ, isRunning = true)
+            nowSpeed *= runMultiply; // ï¿½Þ¸ï¿½ï¿½ï¿½(ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½, isRunning = true)
         }
 
         if (Input.GetKey(KeyCode.LeftShift) 
@@ -64,31 +64,31 @@ public class PlayerController : MonoBehaviour
             && (hAxis != 0 || vAxis != 0)
             && isRunning == true)
         {
-            nowStamina -= 10 * Time.deltaTime; // ´Þ¸®°í ÀÖÀ¸¸é ½ºÅÂ¹Ì³ª °¨¼Ò
+            nowStamina -= 10 * Time.deltaTime; // ï¿½Þ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¹Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift) ||
             !Input.GetKey(KeyCode.LeftShift) ||
             nowStamina <= 0f || (hAxis == 0 && vAxis == 0) ||
-            isRunning == false) // shiftÅ°¸¦ ´©¸£Áö ¾Ê°Å³ª ¶¼°Å³ª ½ºÅÂ¹Ì³ª°¡ ¾ø°Å³ª ¿òÁ÷ÀÌÁö ¾Ê°Å³ª isRunningÀÌ false¸é
+            isRunning == false) // shiftÅ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°Å³ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ï¿½Â¹Ì³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°Å³ï¿½ isRunningï¿½ï¿½ falseï¿½ï¿½
         {
             isRunning = false;
             nowSpeed = walkSpeed;
             if (nowStamina < 100f)
                 nowStamina += 5 * Time.deltaTime;
-        } // °È´Â´Ù
+        } // ï¿½È´Â´ï¿½
 
-        staminaGauge.fillAmount = nowStamina / maxStamina; // ÀÌ¹ÌÁö Ã¤¿ì±â(½ºÅÂ¹Ì³ª °ÔÀÌÁö¹Ù)
+        staminaGauge.fillAmount = nowStamina / maxStamina; // ï¿½Ì¹ï¿½ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½Â¹Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 
         
-        if (hAxis != 0 || vAxis != 0) // ¿òÁ÷ÀÌ°í ÀÖÀ¸¸é
+        if (hAxis != 0 || vAxis != 0) // ï¿½ï¿½ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
             bodyAnimator.SetBool("onMoving", true);
             playerRotation.x = nowSpeed * 2;
-            transform.rotation = Quaternion.Euler(playerRotation); // °í°³¸¦ ¼÷ÀÎ´Ù
+            transform.rotation = Quaternion.Euler(playerRotation); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î´ï¿½
             
         }
-        else // ¾Æ´Ï¸é °í°³ µé±â
+        else // ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         {
             bodyAnimator.SetBool("onMoving", false);
             playerRotation.x = 0;
@@ -97,10 +97,10 @@ public class PlayerController : MonoBehaviour
 
 
         if (handController.GetComponent<Animator>().
-            GetCurrentAnimatorStateInfo(0).IsName("swing")) // ÇÃ·¹ÀÌ¾î°¡ swing ¸ð¼ÇÀ» ÃëÇÏ°í ÀÖÀ¸¸é 
+            GetCurrentAnimatorStateInfo(0).IsName("swing")) // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ swing ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
         {
             bodyAnimator.SetBool("onChopping", true); //onChopping = true
-            StopCoroutine("Wait"); // ¸ð¼Ç ±æÀÌ¸¸Å­ ±â´Ù¸®´Â ÄÚ·çÆ¾ ½ÇÇà(±â´Ù¸° ÈÄ onChoppingÀÌ false·Î º¯ÇÔ)
+            StopCoroutine("Wait"); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½Å­ ï¿½ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ onChoppingï¿½ï¿½ falseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
             StartCoroutine("Wait");
 
         }

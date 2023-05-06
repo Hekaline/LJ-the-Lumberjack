@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TREE
   - HATCHET
+  - Trigger
   layers:
   - Default
   - TransparentFX

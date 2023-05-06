@@ -15,7 +15,7 @@ public class InteractionTriggerManager : MonoBehaviour
     {
         if (other.CompareTag("Trigger"))
         {
-            GameObject[] gameObjects = other.GetComponent<GameObject[]>();
+            GameObject[] gameObjects = other.GetComponent<Trigger_ObjArr>().GameObjects;
             for (int i = 0; i < gameObjects.Length; i++)
             {
                 gameObjects[i].SetActive(true);
@@ -34,7 +34,7 @@ public class InteractionTriggerManager : MonoBehaviour
     {
         if (other.CompareTag("Trigger"))
         {
-            GameObject[] gameObjects = other.GetComponent<GameObject[]>();
+            GameObject[] gameObjects = other.GetComponent<Trigger_ObjArr>().GameObjects;
             for (int i = 0; i < gameObjects.Length; i++)
             {
                 gameObjects[i].SetActive(false);

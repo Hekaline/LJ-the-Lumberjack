@@ -584,6 +584,17 @@ PrefabInstance:
       objectReference: {fileID: 1006317426}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbabbf25b62d8a04883421f81e22f3fc, type: 3}
+--- !u!114 &194983395 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7347807275908635133, guid: 9450e9a98aee1b249b2c806ed75c31f5, type: 3}
+  m_PrefabInstance: {fileID: 7347807275217644034}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3863f0f5a5c93c84cb240155eebbfdea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &220998565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,8 +1094,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 453294863}
+  - component: {fileID: 453294864}
   m_Layer: 0
-  m_Name: TreeManager
+  m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1105,6 +1117,20 @@ Transform:
   m_Father: {fileID: 548739983}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &453294864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453294862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d0146b08ba93cf428903191d5bcd197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tmpTreeHP: {fileID: 1006317426}
+  tmpWood: {fileID: 2139639440}
 --- !u!1001 &463318239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2775,7 +2801,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d0146b08ba93cf428903191d5bcd197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treeHP: {fileID: 0}
+  tmpTreeHP: {fileID: 0}
+  tmpWood: {fileID: 0}
 --- !u!1 &1476120144
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,7 +3231,7 @@ GameObject:
   - component: {fileID: 1530015289}
   m_Layer: 0
   m_Name: SellWoodTrigger
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3217,7 +3244,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530015286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.86, y: 5.51, z: -17.01}
+  m_LocalPosition: {x: -4.67, y: 5.51, z: -17.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3234,10 +3261,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 3.058517
-  m_Height: 6.117034
+  m_Radius: 4.0048876
+  m_Height: 8.009775
   m_Direction: 1
-  m_Center: {x: 2.558517, y: 0, z: 0}
+  m_Center: {x: 3.5048876, y: 0, z: 0}
 --- !u!114 &1530015289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3252,6 +3279,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameObjects:
   - {fileID: 766957873}
+  scripts:
+  - {fileID: 0}
 --- !u!1 &1630590806
 GameObject:
   m_ObjectHideFlags: 0
@@ -3613,6 +3642,17 @@ PrefabInstance:
       objectReference: {fileID: 1006317426}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbabbf25b62d8a04883421f81e22f3fc, type: 3}
+--- !u!114 &1865188620 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7347807275367404607, guid: 9450e9a98aee1b249b2c806ed75c31f5, type: 3}
+  m_PrefabInstance: {fileID: 7347807275217644034}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0141ee8444b79a843953e5e7521a948b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1879595294
 GameObject:
   m_ObjectHideFlags: 0
@@ -3856,7 +3896,7 @@ GameObject:
   - component: {fileID: 2011022074}
   m_Layer: 0
   m_Name: InteractionTriggers
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4095,6 +4135,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7347807275714598581, guid: 9450e9a98aee1b249b2c806ed75c31f5, type: 3}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347807275714598581, guid: 9450e9a98aee1b249b2c806ed75c31f5, type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 453294864}
+    - target: {fileID: 7347807275714598581, guid: 9450e9a98aee1b249b2c806ed75c31f5, type: 3}
+      propertyPath: handController
+      value: 
+      objectReference: {fileID: 1865188620}
+    - target: {fileID: 7347807275714598581, guid: 9450e9a98aee1b249b2c806ed75c31f5, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 194983395}
     - target: {fileID: 7347807275908635132, guid: 9450e9a98aee1b249b2c806ed75c31f5, type: 3}
       propertyPath: m_Name
       value: Player
