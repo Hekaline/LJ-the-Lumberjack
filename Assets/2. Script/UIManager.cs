@@ -30,6 +30,8 @@ public class UIManager : MonoBehaviour
     public void UpdateTreeHealth(int nowHealth, int maxHealth)
     {
         tmpTreeHP.text = "Tree Health: " + nowHealth + "/" + maxHealth;
+        StopCoroutine("DeleteTextDelay");
+        StartCoroutine("DeleteTextDelay");
     }
 
     public void EraseTreeHealth()
@@ -40,10 +42,37 @@ public class UIManager : MonoBehaviour
     public void UpdateWood()
     {
         tmpWood.text = "Wood: " + playerController.wood + "/" + playerController.maxWood;
+        if (playerController.wood == playerController.maxWood)
+        {
+            tmpTreeHP.text = "Backpack is full!";
+        } else 
+        {
+            tmpTreeHP.text = "";
+        }
     }
 
     public void UpdateMoney()
     {
         tmpMoney.text = "Money: " + playerController.money;
+    }
+    
+    public void OpenShop()
+    {
+        tmpTreeHP.fontSize = 80;
+        tmpTreeHP.text = "Shop";
+
+        // start the task
+    }
+
+    public void CloseShop()
+    {
+        tmpTreeHP.fontSize = 60;
+        tmpTreeHP.text = "";
+    }
+
+    IEnumerator DeleteTextDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        tmpTreeHP.text = "";
     }
 }

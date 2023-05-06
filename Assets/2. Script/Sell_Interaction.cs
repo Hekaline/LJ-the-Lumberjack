@@ -39,4 +39,5 @@ public class Sell_Interaction : MonoBehaviour
         uiManager.UpdateMoney();
         uiManager.UpdateWood();
     }
+
 }
